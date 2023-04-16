@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define Max 50
+typedef struct {
+    int data[Max];
+    int len;
+}Sqlist; //定义结构体Sqlist
+int delx(Sqlist &l, int x){
+    int k = 0; //k用来记录删除元素的总数
+	for (int i = 0; i < l.len; i++)
+	{
+		if (l.data[i] == x) k++;
+		else l.data[i - k] = l.data[i];
+	}
+    l.len = l.len - k;     //将k后面元素删除
+    return 0;
+}
+int main(){
+    Sqlist l = {1,2,3,2,4,5};
+	l.len = 6;
+    delx(l,2);
+    for (int i = 0; i < l.len; i++)
+        printf("%d ", l.data[i]);
+    return 0;
+}
